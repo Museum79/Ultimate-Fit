@@ -1,0 +1,26 @@
+[
+    {
+      "path": "/",
+      "component": "Home"
+    },
+    {
+      "path": "/home",
+      "component": "Home"
+    },
+    {
+      "path": "/register",
+      "component": "Register"
+    },
+    {
+      "path": "/login",
+      "component": "Login"
+    },
+    {
+      "path": "/musculation",
+      "component": "Musculation"
+    },
+    {
+      "path": "/contact",
+      "component": "Contact"
+    }
+]

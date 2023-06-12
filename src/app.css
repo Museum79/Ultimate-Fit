@@ -1,0 +1,16 @@
+body {
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #210042, #500101);
+}
+
+h2, li, label, button {
+  font-family: 'Bruno Ace', cursive;
+}
+
+h1 {
+  font-family: 'Audiowide', cursive;
+}
+
+h2, p {
+  font-family: 'Oswald', sans-serif;
+}
