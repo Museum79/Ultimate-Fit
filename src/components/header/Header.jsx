@@ -1,6 +1,6 @@
 import React from "react";
 import "../../app.css";
-import "../header/header.css"
+import "../header/header.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -17,11 +17,21 @@ const Navbar = () => {
             </li>
           </Link>
           <Link to="/musculation">
-          <li id="title-header" className="cursor-pointer">Musculation</li></Link>
-          <Link to="/fitness">
-          <li id="title-header" className="cursor-pointer">Fitness</li></Link>
-          <li id="title-header" className="cursor-pointer">Boutique</li>
-          <li id="title-header" className="cursor-pointer">Profile</li>
+            <li id="title-header" className="cursor-pointer">
+              Musculation
+            </li>
+          </Link>
+          <li id="title-header" className="cursor-pointer">
+            Fitness
+          </li>
+          <Link to="/boutique">
+          <li id="title-header" className="cursor-pointer">
+            Boutique
+          </li>
+          </Link>
+          <li id="title-header" className="cursor-pointer">
+            Profile
+          </li>
           <Link to="/login">
             <li id="title-header" className="cursor-pointer">
               Se connecter
