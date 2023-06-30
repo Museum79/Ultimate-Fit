@@ -1,46 +1,68 @@
 import React, { useState } from "react";
 import "../app.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/action";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const inputShadow = {
     boxShadow: " 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
   };
+
+  const navigate = useNavigate();
 
   const [pseudo, setPseudo] = useState("");
   const [dob, setDob] = useState("");
   const [email, setEmail] = useState("");
   const [fieldErrors, setFieldErrors] = useState({
     pseudo: false,
-    dob:    false,
-    email:  false,
+    dob: false,
+    email: false,
   });
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    dispatch(createUser(pseudo, dob, email, password));
+
     const newErrors = {
       pseudo: pseudo === "",
       dob: dob === "",
       email: email === "",
     };
-  
+
     setFieldErrors(newErrors);
-  
+
     if (Object.values(newErrors).includes(true)) {
       return;
     }
-  
+
     if (!isValidPassword(password)) {
       setPasswordError(
         "Mot de passe invalide. Le mot de passe doit contenir au moins 8 caractères, un chiffre, une lettre majuscule, une lettre minuscule et un caractère spécial."
       );
       return;
     }
-  
+
     setPasswordError("");
+
+    if (Object.values(newErrors).includes(true) || passwordError) {
+      return;
+    }
+
+    dispatch(createUser(pseudo, dob, email, password));
+    setFormSubmitted(true);
+
+    setTimeout(() => {
+      setIsSuccess(true);
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
+    }, 2000);
 
     // Affiche les valeurs des champs dans la console
     console.log("Pseudo:", pseudo);
@@ -200,14 +222,25 @@ const Register = () => {
                 to="/home"
                 type="submit"
                 className="w-72 h-14 text-2xl rounded-xl bg-gray-500 hover:bg-gray-400 duration-200 flex items-center justify-center"
-                >
+              >
                 Retour
               </Link>
             </div>
           </div>
-
-
         </form>
+
+        {formSubmitted && !isSuccess && (
+          <div className="flex items-center justify-center text-2xl mt-8 space-x-4">
+            <div className="animate-spin h-8 w-8 border-t-2 border-white rounded-full"></div>
+            <div className="text-white">Chargement...</div>
+          </div>
+        )}
+
+        {isSuccess && (
+          <div className="bg-yellow-500 mt-12 p-4 rounded-xl text-xl">
+            Inscription réussie! Vous allez être redirigé...
+          </div>
+        )}
       </div>
     </>
   );

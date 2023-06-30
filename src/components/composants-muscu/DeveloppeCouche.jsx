@@ -16,7 +16,7 @@ const DeveloppeCouche = () => {
         </p>
       </div>
       <div>
-        <img src={Developper} alt="Developpe-Couche" className="w-2/4 rounded-xl mt-4" />
+        <img src={Developper} alt="Developpe-Couche" className="w-3/4 rounded-xl mt-4" />
       </div>
     </div>
   );
